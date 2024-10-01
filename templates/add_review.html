@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Add Review{% endblock %}
+
+{% block content %}
+<article id="add-review" class="panel intro">
+    <header>
+        <h1>Add Review for Movie</h1>
+    </header>
+
+    <form action="{{ url_for('add_review', user_id=user.id, movie_id=movie_id) }}" method="POST">
+        <label for="review_text">Your Review:</label>
+        <textarea name="review_text" id="review_text" required></textarea>
+        <button type="submit" class="action-btn">Submit Review</button>
+    </form>
+</article>
+{% endblock %}

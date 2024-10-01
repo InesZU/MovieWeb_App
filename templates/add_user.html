@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Add User - MovieWeb App{% endblock %}
+
+{% block content %}
+                            <article id="users" class="panel intro">
+                                <header>
+                                    <h1>Add a New User</h1>
+                                </header>
+                                <form method="POST">
+                                    <label for="name">Name:</label>
+                                    <input type="text" id="name" name="name" required>
+                                    <button type="submit">Add User</button>
+                                </form>
+                            </article>
+{% endblock %}

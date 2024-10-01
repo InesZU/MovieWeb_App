@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}MovieWeb App{% endblock %}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <noscript><link rel="stylesheet" href="{{ url_for('static', filename='noscript.css') }}"></noscript>
+        <style>
+            body {
+		        background-image: url("{{ url_for('static', filename='assets/images/overlay.png') }}"),
+                                url("{{ url_for('static', filename='assets/images/bg.jpg') }}");
+		        background-repeat: repeat, no-repeat;
+		        background-size: auto, 100% 100%;
+		        background-attachment: fixed;
+		        overflow-y: scroll;
+            }
+        </style>
+        {% block head %}{% endblock %}
+    </head>
+	<body class="is-preload">
+		<!-- Wrapper-->
+		<div id="wrapper">
+			<!-- Nav -->
+            <nav id="nav">
+                <a href="{{ url_for('home') }}" class="icon solid fa-home {% if request.endpoint == '/' %}active{% else %}inactive{% endif %}"></a>
+                <a href="{{ url_for('get_all_users') }}" class="icon solid fa-user {% if request.endpoint == 'get_all_users' %}active{% else %}inactive{% endif %}"></a>
+                <a href="{{ url_for('get_all_movies') }}" class="icon solid fa-film {% if request.endpoint == 'get_all_movies' %}active{% else %}inactive{% endif %}"></a>
+            </nav>
+            <!-- Main content -->
+            <div id="main">
+                {% block content %}{% endblock %}
+            </div>
+
+            <!-- Footer -->
+            <div id="footer">
+                <ul class="copyright">
+                    <li>&copy; MovieWeb App.</li>
+                </ul>
+            </div>
+		</div>
+
+        <!-- Scripts -->
+		<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+    </body>
+</html>

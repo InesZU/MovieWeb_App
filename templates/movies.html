@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}All Movies - MovieWeb App{% endblock %}
+
+{% block content %}
+<article id="users" class="panel intro">
+    <header>
+        <h1>All Users' Favorite Movies</h1>
+    </header>
+
+    <!-- Movies table -->
+    <section>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Movie Name</th>
+                        <th>Director</th>
+                        <th>Year</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if movies %}
+                    {% for movie in movies %}
+                        <tr>
+                            <td>{{ movie.name }}</td>
+                            <td>{{ movie.director }}</td>
+                            <td>{{ movie.year }}</td>
+                            <td>{{ movie.rating }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5">No movies found</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</article>
+{% endblock %}

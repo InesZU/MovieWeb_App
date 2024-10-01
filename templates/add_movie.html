@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Add Movie - MovieWeb App{% endblock %}
+
+{% block content %}
+<article id="movies" class="panel intro">
+    <header>
+        <h1>Add a New Movie for {{ user.name }}</h1>
+    </header>
+    <section>
+    <form method="POST">
+    <div class="form-group">
+        <label for="name">Movie Name:</label>
+        <input type="text" id="name" name="name" value="{{ movie_name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="director">Director:</label>
+        <input type="text" id="director" name="director" value="{{ director }}" required>
+    </div>
+    <div class="form-group">
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" value="{{ year }}" required>
+    </div>
+    <div class="form-group">
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" step="0.1" value="{{ rating }}" required>
+    </div>
+            <button type="submit" class="add-button">Add Movie</button>
+        </form>
+    </section>
+</article>
+{% endblock %}
