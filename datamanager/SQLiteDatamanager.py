@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, joinedload
-from .Models import Base, User, Movie, Review
+from .models import Base, User, Movie, Review
 from .DataManager import DataManagerInterface
 
 
