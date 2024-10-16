@@ -1478,18 +1478,19 @@ table.default thead {
 /* Optional: Style for the table body */
 .table-container table {
     overflow-x: auto;
-    width: 100%;
+    width: 550px;
     border-collapse: collapse;
     table-layout: fixed;
 }
 
 .table-container th, .table-container td {
-    padding: 0.5em 1em;
+    padding: 5px;
+    text-align: left;
     border-bottom: 1px solid #f4f4f4;
 }
 
 .table-container thead {
-    background-color: #f0f0f0;
+    background-color: #f8f2ff;
     position: sticky;
     top: 0;  /* Keep the table header fixed when scrolling */
 }
@@ -1512,7 +1513,6 @@ table.default thead {
 .user-grid li {
     background-color: #fcbdac; /* Background for each user item */
     margin: 10px;
-    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
     text-align: center;
@@ -1692,13 +1692,11 @@ table.default thead {
 
 	ul {
 		list-style: disc;
-		padding-left: 1em;
 		font-size: 14px;
 
 	}
 
 		ul li {
-			padding-left: 0.5em;
 			list-style-type: none;
 		}
 
@@ -2218,7 +2216,6 @@ table.default thead {
 .user-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
 .user-table th, .user-table td {

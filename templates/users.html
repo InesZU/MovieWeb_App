@@ -14,7 +14,7 @@
     <section>
         <!-- User list table -->
         <div class="table-container">
-            <table class="user-table">
+            <table>
                 <thead>
                     <tr>
                         <th>User</th>
@@ -26,8 +26,12 @@
                         <tr>
                             <td><a href="/users/{{ user.id }}" style="color:#555">{{ user.name }}</a></td>
                             <td>
-                                <a href="{{ url_for('delete_user', user_id=user.id) }}" class="action-btn" onclick="return confirm('Are you sure you want to delete this user?');">Remove User</a>
-                                <a href="{{ url_for('add_movie', user_id=user.id) }}" class="action-btn">Add Movie</a>
+                                <form action="{{ url_for('delete_user', user_id=user.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                            <button type="submit" class="action-btn">Remove User</button>
+                                        </form>
+                                <form action="{{ url_for('add_movie', user_id=user.id) }}">
+                                    <button type="submit" class="action-btn">Add Movie</button>
+                                        </form>
                             </td>
                         </tr>
                     {% else %}

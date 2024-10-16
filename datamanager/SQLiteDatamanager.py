@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, joinedload
-from .models import Base, User, Movie, Review
+from .Models import Base, User, Movie, Review
 from .DataManager import DataManagerInterface
 
 
@@ -11,7 +11,7 @@ class SQLiteDataManager(DataManagerInterface):
 
     def __init__(self, db_file_name):
         """
-        Initializes the SQLiteDataManager with a SQLite database file.
+        Initializes the SQLiteDataManager with an SQLite database file.
         """
         self.engine = create_engine(f'sqlite:///{db_file_name}')
         Base.metadata.create_all(self.engine)
@@ -49,13 +49,21 @@ class SQLiteDataManager(DataManagerInterface):
 
     def get_user_movies(self, user_id):
         """
-        Retrieves all movies favorited by a specific user.
+        Retrieves all movies favorite by a specific user.
         """
         session = self.Session()
         try:
             user = session.query(User).options(joinedload(User.movies)
                                                .joinedload(Movie.reviews)).filter_by(id=user_id).first()
             return user.movies if user else []
+        finally:
+            session.close()
+
+    def get_movie_with_reviews(self, movie_id):
+        session = self.Session()
+        try:
+            # Eagerly load reviews when fetching the movie
+            return session.query(Movie).options(joinedload(Movie.reviews)).filter_by(id=movie_id).first()
         finally:
             session.close()
 
@@ -113,22 +121,6 @@ class SQLiteDataManager(DataManagerInterface):
             new_movie = Movie(name=name, director=director, year=year, rating=rating, user_id=user_id)
             session.add(new_movie)
             session.commit()
-        finally:
-            session.close()
-
-    def update_movie(self, movie_id, name, director, year, rating):
-        """
-        Updates movie details by movie ID.
-        """
-        session = self.Session()
-        try:
-            movie = session.query(Movie).filter_by(id=movie_id).first()
-            if movie:
-                movie.name = name or movie.name
-                movie.director = director or movie.director
-                movie.year = year or movie.year
-                movie.rating = rating or movie.rating
-                session.commit()
         finally:
             session.close()
 

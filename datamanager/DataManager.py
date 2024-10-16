@@ -65,20 +65,6 @@ class DataManagerInterface(ABC):
         pass
 
     @abstractmethod
-    def update_movie(self, movie_id, name, director, year, rating):
-        """
-        Update the details of a specific movie.
-
-        Args:
-            movie_id (int): The ID of the movie to update.
-            name (str): The updated name of the movie.
-            director (str): The updated director of the movie.
-            year (int): The updated release year of the movie.
-            rating (int): The updated rating of the movie.
-        """
-        pass
-
-    @abstractmethod
     def delete_movie(self, movie_id):
         """
         Remove a movie from the data source.

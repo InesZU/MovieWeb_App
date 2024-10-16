@@ -1,6 +1,8 @@
 import sys
 import os
 
+from MovieWeb_App.MovieWeb_app import data_manager
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import pytest
@@ -29,7 +31,7 @@ def test_user_movies(client):
     # Assuming you have a user with id 1
     response = client.get('/users/1')
     assert response.status_code == 200
-    assert b"Favorite Movies" in response.data  # Check if movies section is present
+    assert b"Favorite Movies" in response.data
 
 
 def test_add_user(client):
@@ -46,16 +48,6 @@ def test_add_movie(client):
         'rating': 9
     })
     assert response.status_code == 302  # Redirect after adding
-
-
-def test_update_movie(client):
-    response = client.post('/users/1/update_movie/1', data={
-        'name': 'Inception Updated',
-        'director': 'Christopher Nolan',
-        'year': 2010,
-        'rating': 9
-    })
-    assert response.status_code == 302  # Redirect after updating
 
 
 def test_delete_movie(client):
